@@ -402,6 +402,36 @@ tmux_conf_uninstall_plugins_on_reload=true
 #set -g @plugin 'tmux-plugins/tmux-continuum'
 #set -g @continuum-restore 'on'
 
+#Layout related configs
+set -g base-index 1
+set -g renumber-windows on
+set -g status-left ''
+set -g status-right-length  60
+
+#It's always good to keep track of the time ;-)
+#set -g status-right '#[fg=black]#[bg=white]#(date "+%a %b-%d %T")'
+
+#set -g status-bg cyan
+set -g pane-active-border-style fg=cyan
+set -g window-status-current-style "bg=white"
+
+
+#History related configs
+set -g history-limit 20000
+
+#Mouse related configs for tmux < 2.1
+set -g mouse on
+
+
+#Initialize plugin manager
+run '~/.tmux/plugins/tpm/tpm'
+
+# Split panes with \ and -
+bind \\ split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
+unbind '"'
+unbind %
+
 
 # -- custom variables ----------------------------------------------------------
 
